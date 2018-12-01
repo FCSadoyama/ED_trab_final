@@ -1,15 +1,12 @@
 #include <stdio.h>
 #include <stdlib.h>
-
-typedef struct No{
-    int nchaves, folha;
-    struct Filme* filme;
-
-    struct ArvB **filho;
-}TNO;
+#include "arvore.h"
 
 int main()
 {
-    printf("Hello world!\n");
+    int t;
+    printf("De o tamanho da árvore\n");
+    scanf("%d", &t);
+    printf("t");
     return 0;
 }

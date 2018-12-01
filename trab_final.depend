@@ -1,0 +1,21 @@
+# depslib dependency file v1.0
+1543689689 source:c:\users\felipe\facul\5_periodo\ed\trab_final\movie.c
+	<stdio.h>
+	<stdlib.h>
+	"movie.h"
+
+1543689385 source:c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.c
+	<stdio.h>
+	<stdlib.h>
+	"movie.h"
+
+1543686448 c:\users\felipe\facul\5_periodo\ed\trab_final\movie.c
+	<stdio.h>
+	<stdlib.h>
+
+1543689475 source:c:\users\felipe\facul\5_periodo\ed\trab_final\main.c
+	<stdio.h>
+	<stdlib.h>
+
+1543689681 c:\users\felipe\facul\5_periodo\ed\trab_final\movie.h
+

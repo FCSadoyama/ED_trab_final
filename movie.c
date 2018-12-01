@@ -1,10 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include "movie.h"
 
-typedef struct filme {
-    char titulo[80];
-    int ano_lancamento;
-    char nome_diretor[50];
-    char genero[30];
-    int duracao_minutos;
-} Filme;
+void printFilme(Filme* filme){
+    printf("%s | %d | %s | %s | %d", filme->titulo, filme->ano_lancamento, filme->nome_diretor, filme->genero, filme->duracao_minutos);
+}
