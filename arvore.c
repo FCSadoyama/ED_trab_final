@@ -107,7 +107,7 @@ TAB *Insere(TAB *T, Filme* k, int t){
   }
   if(T->nchaves == (2*t)-1){
     TAB *S = Cria(t);
-    S->nchaves=0;
+    S->nchaves = 0;
     S->folha = 0;
     S->filho[0] = T;
     S = Divisao(S,1,T,t);

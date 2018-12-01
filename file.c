@@ -6,7 +6,7 @@
 #include "arvore.h"
 #include "file.h"
 
-char * str_split(char* str)
+Filme* movie_split(char* str)
 {
     int i = 0;
     char *p = strtok (str, "/");
@@ -18,7 +18,14 @@ char * str_split(char* str)
         p = strtok (NULL, "/");
     }
 
-    return array;
+    Filme* novo = (Filme*)malloc(sizeof(Filme));
+    strcpy(novo->titulo, array[0]);
+    novo->ano_lancamento = array[1];
+    strcpy(novo->nome_diretor, array[2]);
+    strcpy(novo->genero, array[3]);
+    novo->duracao_minutos = array[4];
+
+    return novo;
 }
 
 TAB* readCatalog(char path[80], int t){
@@ -33,23 +40,9 @@ TAB* readCatalog(char path[80], int t){
     }
 
     while (fgets(buf,1000, fp) != NULL){
-        printf("%s",buf);
-        char* tokens = str_split(buf);
-        Filme* novo = (Filme*)malloc(sizeof(Filme*));
-        if (tokens){
-            int i;
-            strcpy(novo->titulo, tokens[0]);
-            novo->ano_lancamento = tokens[1];
-            strcpy(novo->nome_diretor, tokens[2]);
-            strcpy(novo->genero, tokens[3]);
-            novo->duracao_minutos = tokens[4];
-            free(tokens);
-        }
-        else{
-            novo = NULL;
-        }
+        Filme* novo = movie_split(buf);
 
-        arvore = Insere(arvore, novo, t);
+        //arvore = Insere(arvore, novo, t);
     }
 
     fclose(fp);

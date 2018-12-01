@@ -4,7 +4,7 @@
 	<stdlib.h>
 	"movie.h"
 
-1543699533 source:c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.c
+1543708906 source:c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	"movie.h"
@@ -25,7 +25,7 @@
 1543699553 c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.h
 	"movie.h"
 
-1543708215 source:c:\users\felipe\facul\5_periodo\ed\trab_final\file.c
+1543709810 source:c:\users\felipe\facul\5_periodo\ed\trab_final\file.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>
@@ -34,5 +34,5 @@
 	"arvore.h"
 	"file.h"
 
-1543707783 c:\users\felipe\facul\5_periodo\ed\trab_final\file.h
+1543709584 c:\users\felipe\facul\5_periodo\ed\trab_final\file.h
 
