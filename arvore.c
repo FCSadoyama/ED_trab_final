@@ -39,6 +39,16 @@ void Imprime(TAB *a, int andar){
     }
 }
 
+TAB *Busca(TAB* x, char* ch){
+  TAB *resp = NULL;
+  if(!x) return resp;
+  int i = 0;
+  while(i < x->nchaves && strcmp(ch, getPrimaryKey(x->filme[i])) > 0) i++;
+  if(i < x->nchaves && strcmp(ch, getPrimaryKey(x->filme[i])) == 0) return x;
+  if(x->folha) return resp;
+  return Busca(x->filho[i], ch);
+}
+
 TAB *Inicializa(){
     return NULL;
 }

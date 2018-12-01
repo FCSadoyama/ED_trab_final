@@ -11,6 +11,7 @@ typedef struct ArvB{
 TAB *Cria(int t);
 TAB *Libera(TAB *a);
 void Imprime(TAB *a, int andar);
+TAB *Busca(TAB* x, char* ch);
 TAB *Inicializa();
 
 #endif // ARVORE_H_INCLUDED
