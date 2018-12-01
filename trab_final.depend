@@ -14,13 +14,25 @@
 	<stdio.h>
 	<stdlib.h>
 
-1543689725 source:c:\users\felipe\facul\5_periodo\ed\trab_final\main.c
+1543708152 source:c:\users\felipe\facul\5_periodo\ed\trab_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"arvore.h"
+	"file.h"
 
 1543696123 c:\users\felipe\facul\5_periodo\ed\trab_final\movie.h
 
 1543699553 c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.h
 	"movie.h"
+
+1543708215 source:c:\users\felipe\facul\5_periodo\ed\trab_final\file.c
+	<stdio.h>
+	<stdlib.h>
+	<string.h>
+	<assert.h>
+	"movie.h"
+	"arvore.h"
+	"file.h"
+
+1543707783 c:\users\felipe\facul\5_periodo\ed\trab_final\file.h
 
