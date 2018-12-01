@@ -9,6 +9,8 @@ typedef struct filme {
     int duracao_minutos;
 } Filme;
 
+Filme* initFilme(char titulo[80], int ano, char nome_diretor[50], char genero[30], int duracao);
 void printFilme(Filme* filme);
+char* getPrimaryKey(Filme* filme);
 
 #endif // MOVIE_H_INCLUDED
