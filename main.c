@@ -14,6 +14,7 @@ int main()
     printf("/#####     Alterar pro pk    |      S     #####/\n");
     printf("/#####   Buscar por diretor  |      N     #####/\n");
     printf("/##### Remover por categoria |      N     #####/\n");
+    printf("/##### Armazenar av em disco |      N     #####/\n");
     printf("/##############################################/\n\n\n");
 
     int t;
