@@ -11,7 +11,7 @@ int main()
     scanf("%s", &path);
     printf("De o tamanho da arvore: \n");
     scanf("%d", &t);
-    printf("Caminho: %s | Tamanho: % d \n", path, t);
     TAB* arvore = readCatalog(path, t);
+    Imprime(arvore, 0);
     return 0;
 }

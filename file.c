@@ -20,10 +20,10 @@ Filme* movie_split(char* str)
 
     Filme* novo = (Filme*)malloc(sizeof(Filme));
     strcpy(novo->titulo, array[0]);
-    novo->ano_lancamento = array[1];
+    novo->ano_lancamento = atoi(array[1]);
     strcpy(novo->nome_diretor, array[2]);
     strcpy(novo->genero, array[3]);
-    novo->duracao_minutos = array[4];
+    novo->duracao_minutos = atoi(array[4]);
 
     return novo;
 }
@@ -31,7 +31,7 @@ Filme* movie_split(char* str)
 TAB* readCatalog(char path[80], int t){
     FILE *fp;
     char buf[1000];
-    TAB* arvore = Cria(t);
+    TAB* arvore = Inicializa();
 
     fp = fopen(path, "r");
     if(!fp) {
@@ -42,7 +42,7 @@ TAB* readCatalog(char path[80], int t){
     while (fgets(buf,1000, fp) != NULL){
         Filme* novo = movie_split(buf);
 
-        //arvore = Insere(arvore, novo, t);
+        arvore = Insere(arvore, novo, t);
     }
 
     fclose(fp);

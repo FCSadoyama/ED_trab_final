@@ -17,15 +17,10 @@ void printFilme(Filme* filme){
 }
 
 char* getPrimaryKey(Filme* filme){
-    char* pk = (char*)malloc(sizeof(char*)*(80+sizeof(filme->ano_lancamento)));
-    int i;
-    for (i = 0; i < strlen(filme->titulo); i++){
-        pk[i] = filme->titulo[i];
-    }
-    char ano[4];
+    char ano[sizeof(int) * 4 + 1];
     sprintf(ano, "%d", filme->ano_lancamento);
-    int j;
-    for (j = i; j < 4; j++)
-        pk[j+1] = ano[j-i];
+    char *pk = malloc(strlen(filme->titulo) + strlen(ano) + 1);
+    strcpy(pk, filme->titulo);
+    strcat(pk, ano);
     return pk;
 }
