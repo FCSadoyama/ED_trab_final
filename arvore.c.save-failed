@@ -81,26 +81,6 @@ Filme *BuscaFilme(TAB* x, char* ch){
         return BuscaFilme(x->filho[i], ch);
 }
 
-//NÃO FUNCIONA
-TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
-    TAB *resp = NULL;
-    if(!source)
-        return resp;
-
-    int i = 0;
-
-    while(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) > 0)
-        i++;
-
-    if(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) == 0){
-        return source;
-    }
-
-    if(source->folha)
-        return resp;
-    return BuscaDiretor(source->filho[i], NULL, nome, t);
-}
-
 TAB *Inicializa(){
     return NULL;
 }

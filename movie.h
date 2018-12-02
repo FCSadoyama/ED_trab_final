@@ -15,6 +15,6 @@ typedef struct filme {
 Filme* initFilme(char titulo[80], int ano, char nome_diretor[50], char genero[30], int duracao);
 void printFilme(Filme* filme);
 char* getPrimaryKey(Filme* filme);
-int filmecmp(Filme* target, Filme* filme);
+char* getDiretor(Filme* filme);
 
 #endif // MOVIE_H_INCLUDED

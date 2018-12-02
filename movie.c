@@ -24,3 +24,9 @@ char* getPrimaryKey(Filme* filme){
     strcat(pk, ano);
     return pk;
 }
+
+char* getDiretor(Filme* filme){
+    if (!filme)
+        return "";
+    return filme->nome_diretor;
+}
