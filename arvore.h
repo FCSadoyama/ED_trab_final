@@ -21,7 +21,7 @@ TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t);
 TAB *Insere(TAB *T, Filme* k, int t);
 void *Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo);
 TAB *Remover(TAB* arv, char* ch, int t);
-void *RemoverPorGenero(TAB* arv, char* genero, int t);
+TAB *RemoverPorGenero(TAB* arv, char* genero, int t);
 Filme *BuscaGenero(TAB* x, char* genero);
 
 #endif // ARVORE_H_INCLUDED

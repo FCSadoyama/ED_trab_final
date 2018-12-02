@@ -58,6 +58,7 @@ TAB *Busca(TAB* x, char* ch){
 
     if(x->folha)
         return resp;
+
     return Busca(x->filho[i], ch);
 }
 
@@ -77,11 +78,10 @@ Filme *BuscaFilme(TAB* x, char* ch){
 
     if(x->folha)
         return resp;
-    else
-        return BuscaFilme(x->filho[i], ch);
+
+    return BuscaFilme(x->filho[i], ch);
 }
 
-//NÃO FUNCIONA
 TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
     TAB *resp = NULL;
     if(!source)
@@ -93,12 +93,17 @@ TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
         i++;
 
     if(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) == 0){
-        return source;
+        target = Insere(target, source->filme[i], t);
+        return target;
     }
 
     if(source->folha)
         return resp;
-    return BuscaDiretor(source->filho[i], NULL, nome, t);
+    target = Insere(target, BuscaDiretor(source->filho[i], target, nome, t), t);
+    if (i >= source->nchaves)
+        return target;
+    target = Insere(target, BuscaDiretor(source->filho[i+1], target, nome, t), t);
+    return target;
 }
 
 TAB *Inicializa(){
@@ -346,12 +351,13 @@ TAB *Remover(TAB* arv, char* ch, int t){
     return arv;
 }
 
-void *RemoverPorGenero(TAB* arv, char* genero, int t){
+TAB *RemoverPorGenero(TAB* arv, char* genero, int t){
     Filme* movie = BuscaGenero(arv, genero);
     while(movie){
         arv = Remover(arv, getPrimaryKey(movie), t);
         movie = BuscaGenero(arv, genero);
     }
+    return arv;
 }
 
 Filme *BuscaGenero(TAB* x, char* genero){

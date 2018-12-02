@@ -26,7 +26,7 @@ int main()
     TAB* arvore = readCatalog(path, t);
     Imprime(arvore, 0);
     printf("\n\nRemovido:\n\n");
-    RemoverPorGenero(arvore, "Comedy", t);
-    Imprime(arvore, 0);
+    TAB* arvore2 = BuscaDiretor(arvore, Inicializa(), "George Lucas", t);
+    Imprime(arvore2, 0);
     return 0;
 }
