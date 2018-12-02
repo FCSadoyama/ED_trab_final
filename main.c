@@ -21,12 +21,14 @@ int main()
     char path[80];
     printf("De o caminho do catalogo: \n");
     scanf("%s", &path);
+    TAB* arvore = readCatalog(path, t);
     printf("De o tamanho da arvore: \n");
     scanf("%d", &t);
-    TAB* arvore = readCatalog(path, t);
-    Imprime(arvore, 0);
-    printf("\n\nRemovido:\n\n");
-    TAB* arvore2 = BuscaDiretor(arvore, Inicializa(), "George Lucas", t);
-    Imprime(arvore2, 0);
+
+    TAB* arvore2 = Remover(arvore, "3002006", t);
+    Libera(arvore);
+    printf("De o caminho do novo catalogo: \n");
+    scanf("%s", &path);
+    writeCatalog(path, arvore2);
     return 0;
 }

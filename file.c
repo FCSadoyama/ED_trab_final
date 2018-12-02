@@ -33,7 +33,9 @@ TAB* readCatalog(char path[80], int t){
     char buf[1000];
     TAB* arvore = Inicializa();
 
+
     fp = fopen(path, "r");
+    printf("%s\n", path);
     if(!fp) {
       printf("Arquivo nao encontrado. \n");
       return arvore;
@@ -47,4 +49,18 @@ TAB* readCatalog(char path[80], int t){
 
     fclose(fp);
     return arvore;
+}
+
+void writeCatalog(char path[80], TAB* arv){
+    if(arv){
+        int i,j;
+        for(i=0; i<=arv->nchaves-1; i++){
+            writeCatalog(path, arv->filho[i]);
+
+            FILE *fp = fopen(path, "a");
+            fprintf(fp, "%s", printFilmeInFile(arv->filme[i]));
+            fclose(fp);
+        }
+        writeCatalog(path, arv->filho[i]);
+    }
 }
