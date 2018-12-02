@@ -124,7 +124,7 @@ TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t){
 
 
 TAB *Insere(TAB *T, Filme* k, int t){
-  if(Busca(T,k)) return T;
+  if(Busca(T, getPrimaryKey(k))) return T;
   if(!T){
     T=Cria(t);
     T->filme[0] = k;
