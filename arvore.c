@@ -45,7 +45,8 @@ void Imprime(TAB *a, int andar){
 
 TAB *Busca(TAB* x, char* ch){
     TAB *resp = NULL;
-    if(!x) return resp;
+    if(!x)
+        return resp;
 
     int i = 0;
 
@@ -58,6 +59,26 @@ TAB *Busca(TAB* x, char* ch){
     if(x->folha)
         return resp;
     return Busca(x->filho[i], ch);
+}
+
+Filme *BuscaFilme(TAB* x, char* ch){
+    Filme *resp = NULL;
+
+    if(!x)
+        return resp;
+
+    int i = 0;
+
+    while(i < x->nchaves && strcmp(ch, getPrimaryKey(x->filme[i])) > 0)
+        i++;
+
+    if(i < x->nchaves && strcmp(ch, getPrimaryKey(x->filme[i])) == 0)
+        return x->filme[i];
+
+    if(x->folha)
+        return resp;
+    else
+        return BuscaFilme(x->filho[i], ch);
 }
 
 TAB *Inicializa(){
@@ -99,6 +120,7 @@ TAB *Divisao(TAB *x, int i, TAB* y, int t){
 
 TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t){
   int i = x->nchaves-1;
+
   if(x->folha){
     while((i>=0) && (strcmp(getPrimaryKey(k), getPrimaryKey(x->filme[i])) < 0)){
       x->filme[i+1] = x->filme[i];
@@ -108,6 +130,7 @@ TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t){
     x->nchaves++;
     return x;
   }
+
   while((i>=0) && (strcmp(getPrimaryKey(k), getPrimaryKey(x->filme[i])) < 0))
     i--;
   i++;
@@ -124,13 +147,16 @@ TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t){
 
 
 TAB *Insere(TAB *T, Filme* k, int t){
-  if(Busca(T, getPrimaryKey(k))) return T;
+  if(Busca(T, getPrimaryKey(k)))
+    return T;
+
   if(!T){
-    T=Cria(t);
+    T = Cria(t);
     T->filme[0] = k;
     T->nchaves = 1;
     return T;
   }
+
   if(T->nchaves == (2*t)-1){
     TAB *S = Cria(t);
     S->nchaves = 0;
@@ -140,6 +166,14 @@ TAB *Insere(TAB *T, Filme* k, int t){
     S = Insere_Nao_Completo(S,k,t);
     return S;
   }
+
   T = Insere_Nao_Completo(T,k,t);
   return T;
+}
+
+void *Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo){
+    Filme* movie = BuscaFilme(T, ch);
+    strcpy(movie->nome_diretor, nome_diretor);
+    strcpy(movie->genero, genero);
+    movie->duracao_minutos = tempo;
 }

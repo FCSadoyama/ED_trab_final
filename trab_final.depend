@@ -1,10 +1,10 @@
 # depslib dependency file v1.0
-1543714005 source:c:\users\felipe\facul\5_periodo\ed\trab_final\movie.c
+1543724270 source:c:\users\felipe\facul\5_periodo\ed\trab_final\movie.c
 	<stdio.h>
 	<stdlib.h>
 	"movie.h"
 
-1543714765 source:c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.c
+1543726784 source:c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	"movie.h"
@@ -14,7 +14,7 @@
 	<stdio.h>
 	<stdlib.h>
 
-1543714080 source:c:\users\felipe\facul\5_periodo\ed\trab_final\main.c
+1543726276 source:c:\users\felipe\facul\5_periodo\ed\trab_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"arvore.h"
@@ -22,10 +22,10 @@
 
 1543696123 c:\users\felipe\facul\5_periodo\ed\trab_final\movie.h
 
-1543699553 c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.h
+1543726842 c:\users\felipe\facul\5_periodo\ed\trab_final\arvore.h
 	"movie.h"
 
-1543714208 source:c:\users\felipe\facul\5_periodo\ed\trab_final\file.c
+1543723639 source:c:\users\felipe\facul\5_periodo\ed\trab_final\file.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

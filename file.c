@@ -35,7 +35,7 @@ TAB* readCatalog(char path[80], int t){
 
     fp = fopen(path, "r");
     if(!fp) {
-      printf("Arquivo nao encontrado.");
+      printf("Arquivo nao encontrado. \n");
       return arvore;
     }
 
