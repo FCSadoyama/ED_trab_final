@@ -16,5 +16,6 @@ Filme* initFilme(char titulo[80], int ano, char nome_diretor[50], char genero[30
 void printFilme(Filme* filme);
 char* getPrimaryKey(Filme* filme);
 char* getDiretor(Filme* filme);
+char* getCategoria(Filme* filme);
 
 #endif // MOVIE_H_INCLUDED

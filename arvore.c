@@ -197,3 +197,179 @@ void *Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo){
     strcpy(movie->genero, genero);
     movie->duracao_minutos = tempo;
 }
+
+TAB *Remover(TAB* arv, char* ch, int t){
+    if(!arv)
+        return arv;
+    int i;
+
+    for(i = 0; i < arv->nchaves && strcmp(getPrimaryKey(arv->filme[i]), ch) < 0; i++);
+
+    if(i < arv->nchaves && strcmp(getPrimaryKey(arv->filme[i]), ch) == 0){
+        if(arv->folha){
+            int j;
+            for(j=i; j<arv->nchaves-1;j++)
+                arv->filme[j] = arv->filme[j+1];
+            arv->nchaves--;
+            return arv;
+        }
+        if(!arv->folha && arv->filho[i]->nchaves >= t){
+            TAB *y = arv->filho[i];
+            while(!y->folha)
+                y = y->filho[y->nchaves];
+
+            int temp = y->filme[y->nchaves-1];
+            arv->filho[i] = Remover(arv->filho[i], temp, t);
+            arv->filme[i] = temp;
+            return arv;
+        }
+        if(!arv->folha && arv->filho[i+1]->nchaves >= t){
+            TAB *y = arv->filho[i+1];
+
+            while(!y->folha)
+                y = y->filho[0];
+
+            int temp = y->filme[0];
+            y = Remover(arv->filho[i+1], getPrimaryKey(temp), t);
+            arv->filme[i] = temp;
+            return arv;
+        }
+        if(!arv->folha && arv->filho[i+1]->nchaves == t-1 && arv->filho[i]->nchaves == t-1){
+            TAB *y = arv->filho[i];
+            TAB *z = arv->filho[i+1];
+            y->filme[y->nchaves] = Busca(arv, ch)->filme[0];
+            int j;
+
+            for(j=0; j<t-1; j++)
+                y->filme[t+j] = z->filme[j];
+
+            for(j=0; j<=t; j++)
+                y->filho[t+j] = z->filho[j];
+
+            y->nchaves = 2*t-1;
+
+            for(j=i; j < arv->nchaves-1; j++)
+                arv->filme[j] = arv->filme[j+1];
+
+            for(j=i+1; j <= arv->nchaves; j++)
+                arv->filho[j] = arv->filho[j+1];
+
+            arv->filho[j] = NULL;
+            arv->nchaves--;
+            arv->filho[i] = Remover(arv->filho[i], ch, t);
+            return arv;
+        }
+    }
+
+    TAB *y = arv->filho[i], *z = NULL;
+    if (y->nchaves == t-1){
+        if((i < arv->nchaves) && (arv->filho[i+1]->nchaves >=t)){
+            z = arv->filho[i+1];
+            y->filme[t-1] = arv->filme[i];
+            y->nchaves++;
+            arv->filme[i] = z->filme[0];
+            int j;
+            for(j=0; j < z->nchaves-1; j++)
+                z->filme[j] = z->filme[j+1];
+            y->filho[y->nchaves] = z->filho[0];
+            for(j=0; j < z->nchaves; j++)
+                z->filho[j] = z->filho[j+1];
+            z->nchaves--;
+            arv->filho[i] = Remover(arv->filho[i], ch, t);
+            return arv;
+        }
+        if((i > 0) && (!z) && (arv->filho[i-1]->nchaves >=t)){
+            z = arv->filho[i-1];
+            int j;
+
+            for(j = y->nchaves; j>0; j--)
+                y->filme[j] = y->filme[j-1];
+            for(j = y->nchaves + 1; j>0; j--)
+                y->filho[j] = y->filho[j-1];
+
+            y->filme[0] = arv->filme[i-1];
+            y->nchaves++;
+            arv->filme[i-1] = z->filme[z->nchaves-1];
+            y->filho[0] = z->filho[z->nchaves];
+            z->nchaves--;
+            arv->filho[i] = Remover(y, ch, t);
+            return arv;
+        }
+        if(!z){
+            if(i < arv->nchaves && arv->filho[i+1]->nchaves == t-1){
+                z = arv->filho[i+1];
+                y->filme[t-1] = arv->filme[i];
+                y->nchaves++;
+                int j;
+                for(j=0; j < t-1; j++){
+                    y->filme[t+j] = z->filme[j];
+                    y->nchaves++;
+                }
+                if(!y->folha){
+                    for(j=0; j<t; j++){
+                        y->filho[t+j] = z->filho[j];
+                    }
+                }
+                for(j=i; j < arv->nchaves - 1; j++){
+                    arv->filme[j] = arv->filme[j+1];
+                    arv->filho[j+1] = arv->filho[j+2];
+                }
+                arv->nchaves--;
+                arv = Remover(arv, ch, t);
+                return arv;
+            }
+            if((i > 0) && (arv->filho[i-1]->nchaves == t-1)){
+                z = arv->filho[i-1];
+                if(i == arv->nchaves)
+                  z->filme[t-1] = arv->filme[i-1];
+                else
+                  z->filme[t-1] = arv->filme[i];
+                z->nchaves++;
+                int j;
+                for(j=0; j < t-1; j++){
+                  z->filme[t+j] = y->filme[j];
+                  z->nchaves++;
+                }
+                if(!z->folha){
+                  for(j=0; j<t; j++){
+                    z->filho[t+j] = y->filho[j];
+                  }
+                }
+                arv->nchaves--;
+                arv->filho[i-1] = z;
+                arv = Remover(arv, ch, t);
+                return arv;
+            }
+        }
+    }
+    arv->filho[i] = Remover(arv->filho[i], ch, t);
+    return arv;
+}
+
+void *RemoverPorGenero(TAB* arv, char* genero, int t){
+    Filme* movie = BuscaGenero(arv, genero);
+    while(movie){
+        arv = Remover(arv, getPrimaryKey(movie), t);
+        movie = BuscaGenero(arv, genero);
+    }
+}
+
+Filme *BuscaGenero(TAB* x, char* genero){
+    Filme *resp = NULL;
+
+    if(!x)
+        return resp;
+
+    int i = 0;
+
+    while(i < x->nchaves && strcmp(genero, getGenero(x->filme[i])) > 0)
+        i++;
+
+    if(i < x->nchaves && strcmp(genero, getGenero(x->filme[i])) == 0)
+        return x->filme[i];
+
+    if(x->folha)
+        return resp;
+    else
+        return BuscaGenero(x->filho[i], genero);
+}

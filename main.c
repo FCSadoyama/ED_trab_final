@@ -8,13 +8,13 @@ int main()
     printf("/##############################################/\n");
     printf("/#####            Lista de tarefas        #####/\n");
     printf("/#####        Tarefa         | Realizado? #####/\n");
-    printf("/#####        Inserir        |      S     #####/\n");
-    printf("/#####      Buscar por pk    |      S     #####/\n");
-    printf("/#####     Remover por pk    |      N     #####/\n");
-    printf("/#####     Alterar pro pk    |      S     #####/\n");
-    printf("/#####   Buscar por diretor  |      N     #####/\n");
-    printf("/##### Remover por categoria |      N     #####/\n");
-    printf("/##### Armazenar av em disco |      N     #####/\n");
+    printf("/#####        Inserir        |    Sim     #####/\n");
+    printf("/#####      Buscar por pk    |    Sim     #####/\n");
+    printf("/#####     Remover por pk    |    Sim     #####/\n");
+    printf("/#####     Alterar pro pk    |    Sim     #####/\n");
+    printf("/#####   Buscar por diretor  |    Nao     #####/\n");
+    printf("/##### Remover por categoria |  Parcial   #####/\n");
+    printf("/##### Armazenar av em disco |    Nao     #####/\n");
     printf("/##############################################/\n\n\n");
 
     int t;
@@ -24,6 +24,9 @@ int main()
     printf("De o tamanho da arvore: \n");
     scanf("%d", &t);
     TAB* arvore = readCatalog(path, t);
-    //Imprime(arvore, 0);
+    Imprime(arvore, 0);
+    printf("\n\nRemovido:\n\n");
+    RemoverPorGenero(arvore, "Comedy", t);
+    Imprime(arvore, 0);
     return 0;
 }

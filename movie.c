@@ -30,3 +30,9 @@ char* getDiretor(Filme* filme){
         return "";
     return filme->nome_diretor;
 }
+
+char* getGenero(Filme* filme){
+    if (!filme)
+        return "";
+    return filme->genero;
+}
