@@ -24,12 +24,9 @@ int main()
     TAB* arvore = readCatalog(path, t);
     printf("De o tamanho da arvore: \n");
     scanf("%d", &t);
-
-    TAB* arvore2 = Remover(arvore, "3002006", t);
-    Libera(arvore);
     printf("De o caminho do novo catalogo: \n");
     scanf("%s", &path);
-    Imprime(arvore, 0);
-    //writeCatalog(path, arvore2);
+    //Imprime(arvore, 0);
+    writeCatalog(path, arvore);
     return 0;
 }

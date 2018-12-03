@@ -51,16 +51,14 @@ TAB* readCatalog(char path[80], int t){
 }
 
 void writeCatalog(char path[80], TAB* arv){
-    FILE *fp = fopen(path, "a");
-    fputs("works", fp);
-    fclose(fp);
     if(arv){
         int i,j;
         for(i=0; i<=arv->nchaves-1; i++){
             writeCatalog(path, arv->filho[i]);
 
             FILE *fp = fopen(path, "a");
-            fprintf(fp, printFilmeInFile(arv->filme[i]));
+            Filme *filme = arv->filme[i];
+            fprintf(fp, "%s/%d/%s/%s/%d\n", filme->titulo, filme->ano_lancamento, filme->nome_diretor, filme->genero, filme->duracao_minutos);
             fflush(fp);
             fclose(fp);
         }

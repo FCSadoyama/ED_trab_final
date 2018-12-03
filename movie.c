@@ -16,24 +16,6 @@ void printFilme(Filme* filme){
     printf("%s | %d | %s | %s | %d", filme->titulo, filme->ano_lancamento, filme->nome_diretor, filme->genero, filme->duracao_minutos);
 }
 
-char* printFilmeInFile(Filme *filme){
-    char ano[sizeof(int) * 4 + 1];
-    sprintf(ano, "%d", filme->ano_lancamento);
-    char duracao[sizeof(int) * 4 + 1];
-    sprintf(duracao, "%d", filme->duracao_minutos);
-    char *pk = malloc(strlen(filme->titulo) + strlen(ano) + strlen(filme->nome_diretor) + strlen(filme->genero) + strlen(duracao) + 1);
-    strcpy(pk, filme->titulo);
-    strcat(pk, "/");
-    strcat(pk, ano);
-    strcat(pk, "/");
-    strcat(pk, filme->nome_diretor);
-    strcat(pk, "/");
-    strcat(pk, filme->genero);
-    strcat(pk, "/");
-    strcat(pk, filme->duracao_minutos);
-    return pk;
-}
-
 char* getPrimaryKey(Filme* filme){
     char ano[sizeof(int) * 4 + 1];
     sprintf(ano, "%d", filme->ano_lancamento);
