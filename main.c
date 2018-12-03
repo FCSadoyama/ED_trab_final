@@ -29,6 +29,7 @@ int main()
     Libera(arvore);
     printf("De o caminho do novo catalogo: \n");
     scanf("%s", &path);
-    writeCatalog(path, arvore2);
+    Imprime(arvore, 0);
+    //writeCatalog(path, arvore2);
     return 0;
 }

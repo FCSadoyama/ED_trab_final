@@ -47,7 +47,7 @@
 1543794701 c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\arvore.h
 	"movie.h"
 
-1543796193 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\main.c
+1543807861 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"arvore.h"
@@ -60,7 +60,7 @@
 	<stdlib.h>
 	"movie.h"
 
-1543797590 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\file.c
+1543799657 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\file.c
 	<stdio.h>
 	<stdlib.h>
 	<string.h>

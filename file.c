@@ -52,7 +52,7 @@ TAB* readCatalog(char path[80], int t){
 
 void writeCatalog(char path[80], TAB* arv){
     FILE *fp = fopen(path, "a");
-    fprintf(fp, "Testing...\n");
+    fputs("works", fp);
     fclose(fp);
     if(arv){
         int i,j;
@@ -60,8 +60,8 @@ void writeCatalog(char path[80], TAB* arv){
             writeCatalog(path, arv->filho[i]);
 
             FILE *fp = fopen(path, "a");
-            //fprintf(fp, "%s", printFilmeInFile(arv->filme[i]));
-            fputs(printFilmeInFile(arv->filme[i]), fp);
+            fprintf(fp, printFilmeInFile(arv->filme[i]));
+            fflush(fp);
             fclose(fp);
         }
         writeCatalog(path, arv->filho[i]);
