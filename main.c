@@ -26,7 +26,8 @@ int main()
     scanf("%d", &t);
     printf("De o caminho do novo catalogo: \n");
     scanf("%s", &path);
-    arvore = RemoverPorGenero(arvore, "Comedy", t);
-    writeCatalog(path, arvore);
+
+
+
     return 0;
 }

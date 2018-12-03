@@ -22,6 +22,7 @@ char* getPrimaryKey(Filme* filme){
     char *pk = malloc(strlen(filme->titulo) + strlen(ano) + 1);
     strcpy(pk, filme->titulo);
     strcat(pk, ano);
+    free(ano);
     return pk;
 }
 

@@ -92,18 +92,13 @@ TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
     while(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) > 0)
         i++;
 
-    if(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) == 0){
-        target = Insere(target, source->filme[i], t);
-        return target;
-    }
+    if(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) == 0)
+        return source;
 
     if(source->folha)
         return resp;
-    target = Insere(target, BuscaDiretor(source->filho[i], target, nome, t), t);
-    if (i >= source->nchaves)
-        return target;
-    target = Insere(target, BuscaDiretor(source->filho[i+1], target, nome, t), t);
-    return target;
+
+    return BuscaDiretor(source->filho[i], NULL, nome, t);
 }
 
 TAB *Inicializa(){
@@ -223,7 +218,7 @@ TAB *Remover(TAB* arv, char* ch, int t){
             while(!y->folha)
                 y = y->filho[y->nchaves];
 
-            int temp = y->filme[y->nchaves-1];
+            Filme* temp = y->filme[y->nchaves-1];
             arv->filho[i] = Remover(arv->filho[i], temp, t);
             arv->filme[i] = temp;
             return arv;
@@ -234,7 +229,7 @@ TAB *Remover(TAB* arv, char* ch, int t){
             while(!y->folha)
                 y = y->filho[0];
 
-            int temp = y->filme[0];
+            Filme* temp = y->filme[0];
             y = Remover(arv->filho[i+1], getPrimaryKey(temp), t);
             arv->filme[i] = temp;
             return arv;
@@ -354,10 +349,11 @@ TAB *Remover(TAB* arv, char* ch, int t){
 TAB *RemoverPorGenero(TAB* arv, char* genero, int t){
     Filme* movie = BuscaGenero(arv, genero);
     while(movie){
-        printf("\n%s\n", getPrimaryKey(movie));
-        arv = Remover(arv, getPrimaryKey(movie), t);
-        movie = BuscaFilme(arv, getPrimaryKey(movie));
-        //movie = BuscaFilme(arv, getPrimaryKey(movie));
+        char pk[84];
+        strcpy(pk, getPrimaryKey(movie));
+        printf("\n%s\n", pk);
+        arv = Remover(arv, pk, t);
+        movie = BuscaGenero(arv, genero);
     }
     free(movie);
     return arv;
