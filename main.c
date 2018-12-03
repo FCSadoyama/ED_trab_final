@@ -5,18 +5,6 @@
 
 int main()
 {
-    printf("/##############################################/\n");
-    printf("/#####            Lista de tarefas        #####/\n");
-    printf("/#####        Tarefa         | Realizado? #####/\n");
-    printf("/#####        Inserir        |    Sim     #####/\n");
-    printf("/#####      Buscar por pk    |    Sim     #####/\n");
-    printf("/#####     Remover por pk    |    Sim     #####/\n");
-    printf("/#####     Alterar pro pk    |    Sim     #####/\n");
-    printf("/#####   Buscar por diretor  |    Sim     #####/\n");
-    printf("/##### Remover por categoria |  Parcial   #####/\n");
-    printf("/##### Armazenar av em disco |    Sim     #####/\n");
-    printf("/##############################################/\n\n\n");
-
     int t;
     char path[80];
     printf("De o caminho do catalogo: \n");
