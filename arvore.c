@@ -85,20 +85,31 @@ Filme *BuscaFilme(TAB* x, char* ch){
 TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
     TAB *resp = NULL;
     if(!source)
-        return resp;
+        return target;
 
     int i = 0;
-
-    while(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) > 0)
+    while(i < source->nchaves){
+        if(strcmp(nome, getDiretor(source->filme[i])) == 0){
+            target = Insere(target, source->filme[i], t);
+        }
         i++;
+    }
 
-    if(i < source->nchaves && strcmp(nome, getDiretor(source->filme[i])) == 0)
-        return source;
+    return Concat(target, BuscaDiretor(source->filho[i], target, nome, t), t);
+}
 
-    if(source->folha)
-        return resp;
+TAB* Concat(TAB* source, TAB* target, int t){
+    if (!source->filho)
+        return NULL;
 
-    return BuscaDiretor(source->filho[i], NULL, nome, t);
+    int i = 0;
+    while (!source->filme[i] && i < source->nchaves){
+        target = Insere(target, source->filme[i], t);
+        target = Concat(source->filho[i], target, t);
+    }
+
+    return target;
+
 }
 
 TAB *Inicializa(){

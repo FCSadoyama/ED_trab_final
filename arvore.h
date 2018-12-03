@@ -15,6 +15,7 @@ void Imprime(TAB *a, int andar);
 TAB *Busca(TAB* x, char* ch);
 Filme *BuscaFilme(TAB* x, char* ch);
 TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t);
+TAB* Concat(TAB* source, TAB* target, int t);
 TAB *Inicializa();
 TAB *Divisao(TAB *x, int i, TAB* y, int t);
 TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t);

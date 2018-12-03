@@ -12,7 +12,7 @@ int main()
     printf("/#####      Buscar por pk    |    Sim     #####/\n");
     printf("/#####     Remover por pk    |    Sim     #####/\n");
     printf("/#####     Alterar pro pk    |    Sim     #####/\n");
-    printf("/#####   Buscar por diretor  |    Nao     #####/\n");
+    printf("/#####   Buscar por diretor  |    Sim     #####/\n");
     printf("/##### Remover por categoria |  Parcial   #####/\n");
     printf("/##### Armazenar av em disco |    Sim     #####/\n");
     printf("/##############################################/\n\n\n");
@@ -27,7 +27,8 @@ int main()
     printf("De o caminho do novo catalogo: \n");
     scanf("%s", &path);
 
-
+    TAB* arvore2 = BuscaDiretor(arvore, Inicializa(), "Ernest Dickerson", t);
+    writeCatalog(path, arvore2);
 
     return 0;
 }
