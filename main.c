@@ -27,8 +27,9 @@ int main()
     printf("De o caminho do novo catalogo: \n");
     scanf("%s", &path);
 
-    TAB* arvore2 = BuscaDiretor(arvore, Inicializa(), "Ernest Dickerson", t);
-    writeCatalog(path, arvore2);
+    arvore = RemoverPorGenero(arvore, "Sci-Fi", t, path);
+    //writeCatalog(path, arvore);
+    //printFilme(BuscaGenero(arvore, "Sci-Fi"));
 
     return 0;
 }

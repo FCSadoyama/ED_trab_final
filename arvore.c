@@ -230,7 +230,7 @@ TAB *Remover(TAB* arv, char* ch, int t){
                 y = y->filho[y->nchaves];
 
             Filme* temp = y->filme[y->nchaves-1];
-            arv->filho[i] = Remover(arv->filho[i], temp, t);
+            arv->filho[i] = Remover(arv->filho[i], getPrimaryKey(temp), t);
             arv->filme[i] = temp;
             return arv;
         }
@@ -357,35 +357,35 @@ TAB *Remover(TAB* arv, char* ch, int t){
     return arv;
 }
 
-TAB *RemoverPorGenero(TAB* arv, char* genero, int t){
+TAB *RemoverPorGenero(TAB* arv, char* genero, int t, char* path){
     Filme* movie = BuscaGenero(arv, genero);
     while(movie){
-        char pk[84];
-        strcpy(pk, getPrimaryKey(movie));
-        printf("\n%s\n", pk);
-        arv = Remover(arv, pk, t);
+        arv = Remover(arv, getPrimaryKey(movie), t);
+        writeCatalog(path, arv);
         movie = BuscaGenero(arv, genero);
     }
-    free(movie);
     return arv;
 }
 
-Filme *BuscaGenero(TAB* x, char* genero){
+Filme *BuscaGenero(TAB* source, char* genero){
     Filme *resp = NULL;
-
-    if(!x)
+    if(!source)
         return resp;
 
     int i = 0;
-
-    while(i < x->nchaves && strcmp(genero, getGenero(x->filme[i])) > 0)
+    while(i < source->nchaves){
+        if(strcmp(genero, getGenero(source->filme[i])) == 0){
+            return source->filme[i];
+        }
         i++;
+    }
 
-    if(i < x->nchaves && strcmp(genero, getGenero(x->filme[i])) == 0)
-        return x->filme[i];
-
-    if(x->folha)
-        return resp;
-    else
-        return BuscaGenero(x->filho[i], genero);
+    int j = 0;
+    while (source->filho[j]){
+        Filme* filme = BuscaGenero(source->filho[j], genero);
+        if (filme)
+            return filme;
+        j++;
+    }
+    return resp;
 }
