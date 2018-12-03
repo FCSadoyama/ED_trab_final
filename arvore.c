@@ -354,9 +354,12 @@ TAB *Remover(TAB* arv, char* ch, int t){
 TAB *RemoverPorGenero(TAB* arv, char* genero, int t){
     Filme* movie = BuscaGenero(arv, genero);
     while(movie){
+        printf("\n%s\n", getPrimaryKey(movie));
         arv = Remover(arv, getPrimaryKey(movie), t);
-        movie = BuscaGenero(arv, genero);
+        movie = BuscaFilme(arv, getPrimaryKey(movie));
+        //movie = BuscaFilme(arv, getPrimaryKey(movie));
     }
+    free(movie);
     return arv;
 }
 

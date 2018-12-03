@@ -14,7 +14,7 @@ int main()
     printf("/#####     Alterar pro pk    |    Sim     #####/\n");
     printf("/#####   Buscar por diretor  |    Nao     #####/\n");
     printf("/##### Remover por categoria |  Parcial   #####/\n");
-    printf("/##### Armazenar av em disco |    Nao     #####/\n");
+    printf("/##### Armazenar av em disco |    Sim     #####/\n");
     printf("/##############################################/\n\n\n");
 
     int t;
@@ -26,7 +26,7 @@ int main()
     scanf("%d", &t);
     printf("De o caminho do novo catalogo: \n");
     scanf("%s", &path);
-    //Imprime(arvore, 0);
+    arvore = RemoverPorGenero(arvore, "Comedy", t);
     writeCatalog(path, arvore);
     return 0;
 }
