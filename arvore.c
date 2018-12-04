@@ -82,6 +82,21 @@ Filme *BuscaFilme(TAB* x, char* ch){
     return BuscaFilme(x->filho[i], ch);
 }
 
+char* BuscaNomeDiretor(TAB* x, char* ch){
+    Filme* filme = BuscaFilme(x, ch);
+    return filme->nome_diretor;
+}
+
+char* BuscaGenero(TAB* x, char* ch){
+    Filme* filme = BuscaFilme(x, ch);
+    return filme->genero;
+}
+
+int BuscaDuracao(TAB* x, char* ch){
+    Filme* filme = BuscaFilme(x, ch);
+    return filme->duracao_minutos;
+}
+
 TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
     TAB *resp = NULL;
     if(!source)

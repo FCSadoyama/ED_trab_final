@@ -16,8 +16,19 @@ int main()
     scanf("%s", &path);
 
     arvore = RemoverPorGenero(arvore, "Sci-Fi", t, path);
-    //writeCatalog(path, arvore);
-    //printFilme(BuscaGenero(arvore, "Sci-Fi"));
 
+    Filme* filme = initFilme("teste", 2018, "teste_diretor", "Action", 90);
+    arvore = Insere(arvore, filme, t);
+    char* diretor = BuscaNomeDiretor(arvore, "3002006");
+    char* genero = BuscaGenero(arvore, "3002006");
+    int duracao = BuscaDuracao(arvore, "3002006");
+    arvore = Remover(arvore, "3002006", t);
+    arvore = Altera(arvore, "teste2018", "teste_alterado", "Comedy", 22);
+    RemoverPorGenero(arvore, "Action", t, path);
+    TAB* arv = BuscaDiretor(arvore, Inicializa(), "George Lucas", t);
+    Libera(arvore);
+    printf("De o caminho do novo catalogo: \n");
+    scanf("%s", &path);
+    writeCatalog(path, arv);
     return 0;
 }
