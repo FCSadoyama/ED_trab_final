@@ -26,6 +26,6 @@ TAB *Insere(TAB *T, Filme* k, int t);
 void *Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo);
 TAB *Remover(TAB* arv, char* ch, int t);
 TAB *RemoverPorGenero(TAB* arv, char* genero, int t, char* path);
-Filme *BuscaGenero(TAB* x, char* genero);
+Filme *BuscaPorGenero(TAB* x, char* genero);
 
 #endif // ARVORE_H_INCLUDED

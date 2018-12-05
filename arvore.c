@@ -7,7 +7,7 @@ TAB *Cria(int t){
     TAB* novo = (TAB*)malloc(sizeof(TAB));
     novo->nchaves = 0;
     novo->filme =(Filme*)malloc(sizeof(Filme*)*((t*2)-1));
-    novo->folha=1;
+    novo->folha = 1;
     novo->filho = (TAB**)malloc(sizeof(TAB*)*t*2);
     int i;
     for(i=0; i<(t*2); i++) novo->filho[i] = NULL;
@@ -38,6 +38,8 @@ void Imprime(TAB *a, int andar){
                 printf("   ");
 
             printFilme(a->filme[i]);
+            printf("\n");
+            //printf("%s\n", getPrimaryKey(a->filme[i]));
         }
         Imprime(a->filho[i],andar+1);
     }
@@ -373,16 +375,16 @@ TAB *Remover(TAB* arv, char* ch, int t){
 }
 
 TAB *RemoverPorGenero(TAB* arv, char* genero, int t, char* path){
-    Filme* movie = BuscaGenero(arv, genero);
+    Filme* movie = BuscaPorGenero(arv, genero);
     while(movie){
         arv = Remover(arv, getPrimaryKey(movie), t);
         writeCatalog(path, arv);
-        movie = BuscaGenero(arv, genero);
+        movie = BuscaPorGenero(arv, genero);
     }
     return arv;
 }
 
-Filme *BuscaGenero(TAB* source, char* genero){
+Filme *BuscaPorGenero(TAB* source, char* genero){
     Filme *resp = NULL;
     if(!source)
         return resp;

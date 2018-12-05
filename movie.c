@@ -2,7 +2,7 @@
 #include <stdlib.h>
 #include "movie.h"
 
-Filme* initFilme(char titulo[80], int ano, char nome_diretor[50], char genero[30], int duracao){
+Filme* initFilme(char* titulo, int ano, char* nome_diretor, char* genero, int duracao){
     Filme* novo = (Filme*)malloc(sizeof(Filme));
     strcpy(novo->titulo, titulo);
     novo->ano_lancamento = ano;
@@ -22,7 +22,6 @@ char* getPrimaryKey(Filme* filme){
     char *pk = malloc(strlen(filme->titulo) + strlen(ano) + 1);
     strcpy(pk, filme->titulo);
     strcat(pk, ano);
-    free(ano);
     return pk;
 }
 

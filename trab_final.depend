@@ -36,7 +36,7 @@
 
 1543709584 c:\users\felipe\facul\5_periodo\ed\trab_final\file.h
 
-1543876824 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\arvore.c
+1544041535 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\arvore.c
 	<stdio.h>
 	<stdlib.h>
 	"movie.h"
@@ -44,18 +44,19 @@
 
 1543815225 c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\movie.h
 
-1543876546 c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\arvore.h
+1544034556 c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\arvore.h
 	"movie.h"
 
-1543880061 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\main.c
+1544034357 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\main.c
 	<stdio.h>
 	<stdlib.h>
 	"arvore.h"
 	"file.h"
+	"menu.h"
 
 1543795799 c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\file.h
 
-1543821010 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\movie.c
+1544043373 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\movie.c
 	<stdio.h>
 	<stdlib.h>
 	"movie.h"
@@ -68,4 +69,10 @@
 	"movie.h"
 	"arvore.h"
 	"file.h"
+
+1544034304 c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\menu.h
+
+1544042796 source:c:\users\felipe sadoyama\facul\quinto período\ed\trabalho final\trab_final\ed_trab_final\menu.c
+	"menu.h"
+	"arvore.h"
 
