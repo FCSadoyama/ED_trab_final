@@ -1,8 +1,6 @@
 #ifndef FILE_H_INCLUDED
-#include <assert.h>
-#include <stdlib.h>
-#include <stdio.h>
 #define FILE_H_INCLUDED
+#include "file.h"
 
 Filme* movie_split(char* str);
 TAB* readCatalog(char path[80], int t);

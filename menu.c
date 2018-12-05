@@ -1,5 +1,6 @@
 #include "menu.h"
 #include "arvore.h"
+#include "file.h"
 
 void Run(char* path, int t, char* newPath){
     TAB* arvore = readCatalog(path, t);
@@ -8,40 +9,51 @@ void Run(char* path, int t, char* newPath){
     int action = 1;
     while (action >0 && action < 5){
         printf("Selecione uma opcao\n1-Inserir filme\n2-Remover filme\n3-Buscar por diretor\n4-Remover por genero\n0-Sair\n");
-        if (scanf("%d", &action) == 1){
+        int scanned = scanf("%d", &action);
+        if (scanned == 1){
             if (action > 0){
+                FILE* file = fopen(newPath, "w");
                 if (action == 1){ //inserir
                     char nome[80];
                     char diretor[50];
                     char genero[30];
                     int ano, duracao;
                     printf("De o nome do novo filme: ");
-                    scanf("%s", &nome);
+                    scanf(" %[^\n]s ", &nome);
                     printf("De o ano do novo filme: ");
                     scanf("%d", &ano);
                     printf("De o diretor do novo filme: ");
-                    scanf("%s", &diretor);
+                    scanf(" %[^\n]s ", &diretor);
                     printf("De o genero do novo filme: ");
-                    scanf("%s", &genero);
+                    scanf(" %[^\n]s ", &genero);
                     printf("De a duracao do novo filme: ");
                     scanf("%d", &duracao);
                     printf("\n\n\n%s\n\n\n", &nome);
                     Filme* filme = initFilme(&nome, ano, &diretor, &genero, duracao);
                     arvore = Insere(arvore, filme, t);
                     Imprime(arvore, 0);
-                    writeCatalog(newPath, arvore);
-                } else if (action == 2) { // remover
+                    writeCatalog(file, arvore);
+                }
+                if (action == 2) { // remover
                     char pk[84];
                     printf("De a chave primaria do filme a ser removido: ");
-                    scanf("%s", &pk);
-                    arvore = Remover(arvore, &pk, t);
-                    Imprime(arvore, 0);
-                    writeCatalog(newPath, arvore);
-                } else if (action == 3){ // buscar
-
-                } else if (action == 4) { // remover por diretor
+                    scanf(" %[^\n]s ", &pk);
+                    Filme* filmeRemovido = BuscaFilme(arvore, pk);
+                    if (filmeRemovido){
+                        arvore = Remover(arvore, filmeRemovido, t);
+                        Imprime(arvore, 0);
+                        writeCatalog(file, arvore);
+                    } else {
+                        printf("Filme nao encontrado.\n");
+                    }
+                }
+                if (action == 3){ // buscar
 
                 }
+                if (action == 4) { // remover por diretor
+
+                }
+                fclose(file);
             }
         }
         else{
