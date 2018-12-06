@@ -219,7 +219,7 @@ TAB *Insere(TAB *T, Filme* k, int t){
   return T;
 }
 
-void *Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo){
+void Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo){
     Filme* movie = BuscaFilme(T, ch);
     strcpy(movie->nome_diretor, nome_diretor);
     strcpy(movie->genero, genero);

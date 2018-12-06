@@ -23,7 +23,7 @@ TAB *Inicializa();
 TAB *Divisao(TAB *x, int i, TAB* y, int t);
 TAB *Insere_Nao_Completo(TAB *x, Filme* k, int t);
 TAB *Insere(TAB *T, Filme* k, int t);
-void *Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo);
+void Altera(TAB *T, char* ch, char* nome_diretor, char* genero, int tempo);
 int comparaFilmes(Filme* filme1, Filme* filme2);
 TAB *Remover(TAB* arv, Filme* filme, int t);
 TAB *RemoverPorGenero(TAB* arv, char* genero, int t, char* path);

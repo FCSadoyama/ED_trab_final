@@ -8,7 +8,7 @@ void Run(char* path, int t, char* newPath){
     printf("\n");
     int action = 1;
     while (action >0 && action < 5){
-        printf("Selecione uma opcao\n1-Inserir filme\n2-Remover filme\n3-Buscar por diretor\n4-Remover por genero\n0-Sair\n");
+        printf("Selecione uma opcao\n1-Inserir filme\n2-Remover filme\n3-Buscar informacoes\n4-Alterar info subordinada\n0-Sair\n");
         int scanned = scanf("%d", &action);
         if (scanned == 1){
             if (action > 0){
@@ -48,10 +48,38 @@ void Run(char* path, int t, char* newPath){
                     }
                 }
                 if (action == 3){ // buscar
-
+                    char pk[84];
+                    printf("Digite a chave primaria: ");
+                    scanf(" %[^\n]s ", &pk);
+                    char* diretor = BuscaNomeDiretor(arvore, pk);
+                    char* genero = BuscaGenero(arvore, pk);
+                    int duracao = BuscaDuracao(arvore, pk);
+                    printf("\nDiretor: %s | Genero: %s | Duracao: %d\n\n", diretor, genero, duracao);
                 }
                 if (action == 4) { // remover por diretor
+                    char pk[84];
+                    printf("Digite a chave primaria: ");
+                    scanf(" %[^\n]s ", &pk);
+                    Filme* filme = BuscaFilme(arvore, pk);
+                    if (filme){
+                        printFilme(filme);
+                        printf("\n");
+                        char* diretor;
+                        printf("Digite o novo nome do diretor: ");
+                        scanf(" %[^\n]s ", &diretor);
+                        char* genero;
+                        printf("Digite o novo genero: ");
+                        scanf(" %[^\n]s ", &genero);
+                        int duracao;
+                        printf("Digite a nova duracao: ");
+                        scanf("%d", &duracao);
 
+                        Altera(arvore, pk, diretor, genero, duracao);
+                        Imprime(arvore, 0);
+                        writeCatalog(file, arvore);
+                    } else {
+                        printf("Filme não encontrado. \n");
+                    }
                 }
                 fclose(file);
             }
