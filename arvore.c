@@ -105,8 +105,6 @@ TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
 
     int i = 0;
     while(i < source->nchaves){
-        printFilme(source->filme[i]);
-        printf("\n");
         if(strcmp(nome, getDiretor(source->filme[i])) == 0){
             target = Insere(target, source->filme[i], t);
         }
