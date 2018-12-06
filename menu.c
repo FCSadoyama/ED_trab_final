@@ -7,8 +7,8 @@ void Run(char* path, int t, char* newPath){
     Imprime(arvore, 0);
     printf("\n");
     int action = 1;
-    while (action >0 && action < 5){
-        printf("Selecione uma opcao\n1-Inserir filme\n2-Remover filme\n3-Buscar informacoes\n4-Alterar info subordinada\n0-Sair\n");
+    while (action >0 && action < 7){
+        printf("Selecione uma opcao\n1-Inserir filme\n2-Remover filme\n3-Buscar informacoes\n4-Alterar info subordinada\n5-Buscar por diretor\n6-Remover por genero\n0-Sair\n");
         int scanned = scanf("%d", &action);
         if (scanned == 1){
             if (action > 0){
@@ -56,7 +56,7 @@ void Run(char* path, int t, char* newPath){
                     int duracao = BuscaDuracao(arvore, pk);
                     printf("\nDiretor: %s | Genero: %s | Duracao: %d\n\n", diretor, genero, duracao);
                 }
-                if (action == 4) { // remover por diretor
+                if (action == 4) { // alterar
                     char pk[84];
                     printf("Digite a chave primaria: ");
                     scanf(" %[^\n]s ", &pk);
@@ -74,12 +74,29 @@ void Run(char* path, int t, char* newPath){
                         printf("Digite a nova duracao: ");
                         scanf("%d", &duracao);
 
-                        Altera(arvore, pk, diretor, genero, duracao);
+                        Altera(arvore, pk, &diretor, &genero, &duracao);
                         Imprime(arvore, 0);
                         writeCatalog(file, arvore);
                     } else {
                         printf("Filme não encontrado. \n");
                     }
+                }
+                if (action == 5){ // buscar por diretor
+                    char diretor[50];
+                    printf("Digite o nome do diretor: ");
+                    scanf(" %[^\n]s ", &diretor);
+                    TAB* arvore2 = BuscaDiretor(arvore, Inicializa(), diretor, t);
+                    Imprime(arvore2, 0);
+                    writeCatalog(file, arvore2);
+                    Libera(arvore2);
+                }
+                if (action == 6){ // remover por genero
+                    char genero[30];
+                    printf("Digite o genero: ");
+                    scanf(" %[^\n]s ", &genero);
+                    arvore = RemoverPorGenero(arvore, genero, t);
+                    Imprime(arvore, 0);
+                    writeCatalog(file, arvore);
                 }
                 fclose(file);
             }

@@ -100,33 +100,24 @@ int BuscaDuracao(TAB* x, char* ch){
 }
 
 TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
-    TAB *resp = NULL;
-    if(!source)
-        return target;
-
     int i = 0;
-    while(i < source->nchaves){
-        if(strcmp(nome, getDiretor(source->filme[i])) == 0){
+    while (i < source->nchaves){
+        //printf("\n%s|%s\n", source->filme[i]->nome_diretor, nome);
+        if (strcmp(getDiretor(source->filme[i]), nome) == 0){
+            printFilme(source->filme[i]);
             target = Insere(target, source->filme[i], t);
         }
+
         i++;
     }
 
-    return Concat(target, BuscaDiretor(source->filho[i], target, nome, t), t);
-}
-
-TAB* Concat(TAB* source, TAB* target, int t){
-    if (!source->filho)
-        return NULL;
-
-    int i = 0;
-    while (!source->filme[i] && i < source->nchaves){
-        target = Insere(target, source->filme[i], t);
-        target = Concat(source->filho[i], target, t);
+    int j = 0;
+    while (j <= source->nchaves){
+        if (source->filho[j])
+            return BuscaDiretor(source->filho[j], target, nome, t);
+        j++;
     }
-
     return target;
-
 }
 
 TAB *Inicializa(){
@@ -236,16 +227,12 @@ int comparaFilmes(Filme* filme1, Filme* filme2){
 }
 
 TAB* Remover(TAB* arv, Filme* filme, int t){
-    printf("b");
     if(!arv)
         return arv;
-    printf("c");
     int i;
     for(i = 0; i < arv->nchaves && comparaFilmes(arv->filme[i], filme) == -1; i++);
-    printf("d");
     if(i < arv->nchaves && comparaFilmes(filme, arv->filme[i]) == 0){
         if(arv->folha){
-            printf("1");
             int j;
             for(j = i; j < arv->nchaves-1; j++)
                 arv->filme[j] = arv->filme[j+1];
@@ -253,7 +240,6 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             return arv;
         }
         if(!arv->folha && arv->filho[i]->nchaves >= t){
-            printf("2");
             TAB *y = arv->filho[i];
             while(!y->folha)
                 y = y->filho[y->nchaves];
@@ -263,7 +249,6 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             return arv;
         }
         if(!arv->folha && arv->filho[i+1]->nchaves >= t){
-            printf("3");
             TAB *y = arv->filho[i+1];
             while(!y->folha)
                 y = y->filho[0];
@@ -273,7 +258,6 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             return arv;
         }
         if(!arv->folha && arv->filho[i+1]->nchaves == t-1 && arv->filho[i]->nchaves == t-1){
-            printf("4");
             TAB *y = arv->filho[i];
             TAB *z = arv->filho[i+1];
             y->filme[y->nchaves] = filme;
@@ -293,13 +277,9 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             return arv;
         }
     }
-    printf("e");
     TAB *y = arv->filho[i], *z = NULL;
-    printf("f");
     if (y->nchaves == t-1){
-        printf("g");
         if((i < arv->nchaves) && (arv->filho[i+1]->nchaves >=t)){
-            printf("5");
             z = arv->filho[i+1];
             y->filme[t-1] = arv->filme[i];
             y->nchaves++;
@@ -315,7 +295,6 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             return arv;
         }
         if((i > 0) && (!z) && (arv->filho[i-1]->nchaves >=t)){
-            printf("6");
             z = arv->filho[i-1];
             int j;
             for(j = y->nchaves; j > 0; j--)
@@ -330,11 +309,8 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             arv->filho[i] = Remover(y, filme, t);
             return arv;
         }
-        printf("h");
         if(!z){
-            printf("i");
             if(i < arv->nchaves && arv->filho[i+1]->nchaves == t-1){
-                printf("7");
                 z = arv->filho[i+1];
                 y->filme[t-1] = arv->filme[i];
                 y->nchaves++;
@@ -357,7 +333,6 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
                 return arv;
             }
             if((i > 0) && (arv->filho[i-1]->nchaves == t-1)){
-                printf("8");
                 z = arv->filho[i-1];
                 if(i == arv->nchaves)
                     z->filme[t-1] = arv->filme[i-1];
@@ -381,16 +356,15 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
             }
         }
     }
-    printf("j");
     arv->filho[i] = Remover(arv->filho[i], filme, t);
     return arv;
 }
 
-TAB *RemoverPorGenero(TAB* arv, char* genero, int t, char* path){
+TAB *RemoverPorGenero(TAB* arv, char* genero, int t){
+    printf("\n%s\n", genero);
     Filme* movie = BuscaPorGenero(arv, genero);
     while(movie){
         arv = Remover(arv, movie, t);
-        //writeCatalog(path, arv);
         movie = BuscaPorGenero(arv, genero);
     }
     return arv;
@@ -410,10 +384,12 @@ Filme *BuscaPorGenero(TAB* source, char* genero){
     }
 
     int j = 0;
-    while (source->filho[j]){
-        Filme* filme = BuscaGenero(source->filho[j], genero);
-        if (filme)
-            return filme;
+    while (j <= source->nchaves){
+        if (source->filho[j]){
+            Filme* filme = BuscaPorGenero(source->filho[j], genero);
+            if (filme)
+                return filme;
+        }
         j++;
     }
     return resp;
