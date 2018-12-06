@@ -100,21 +100,24 @@ int BuscaDuracao(TAB* x, char* ch){
 }
 
 TAB *BuscaDiretor(TAB* source, TAB* target, char* nome, int t){
+    if(!source)
+        return target;
+
     int i = 0;
-    while (i < source->nchaves){
-        //printf("\n%s|%s\n", source->filme[i]->nome_diretor, nome);
-        if (strcmp(getDiretor(source->filme[i]), nome) == 0){
-            printFilme(source->filme[i]);
+    while(i < source->nchaves){
+        printFilme(source->filme[i]);
+        printf("\n");
+        if(strcmp(nome, getDiretor(source->filme[i])) == 0){
             target = Insere(target, source->filme[i], t);
         }
-
         i++;
     }
 
     int j = 0;
     while (j <= source->nchaves){
-        if (source->filho[j])
-            return BuscaDiretor(source->filho[j], target, nome, t);
+        if (source->filho[j]){
+            target = BuscaDiretor(source->filho[j], target, nome, t);
+        }
         j++;
     }
     return target;
