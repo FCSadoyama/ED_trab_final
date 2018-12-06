@@ -39,7 +39,6 @@ void Imprime(TAB *a, int andar){
 
             printFilme(a->filme[i]);
             printf("\n");
-            //printf("%s\n", getPrimaryKey(a->filme[i]));
         }
         Imprime(a->filho[i],andar+1);
     }
@@ -362,7 +361,6 @@ TAB* Remover(TAB* arv, Filme* filme, int t){
 }
 
 TAB *RemoverPorGenero(TAB* arv, char* genero, int t){
-    printf("\n%s\n", genero);
     Filme* movie = BuscaPorGenero(arv, genero);
     while(movie){
         arv = Remover(arv, movie, t);
